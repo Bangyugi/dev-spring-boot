@@ -1,6 +1,7 @@
 package com.bangvan.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -17,21 +18,35 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
     @Column(name = "username", nullable = false, unique = true)
+    @NotEmpty(message = " * username is required")
     private String username;
+
     @Column(name = "password", nullable = false)
+    @NotNull(message = " * password is required")
+    @Min(value = 5, message = " * password must be greater or equal than 5 digits/chars")
+    @Max(value = 20, message = " * password must be less or equal than 20 digits/chars")
     private String password;
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
+
     @Column(name = "last_name", nullable = false)
     private String lastName;
+
     @Column(name = "email", nullable = false, unique = true)
     private String email;
+
     @Column(name = "address", nullable = false)
     private String address;
+
     @Column(name = "dob", nullable = false)
     private LocalDate dob;
+
+
     @Column(name="confirm_password",nullable = false)
+    @NotNull(message = " * password is required")
     private String confirmPassword;
 
     public User(String username, String password, String firstName, String lastName, String email, String address, LocalDate dob, String confirmPassword) {
