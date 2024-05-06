@@ -3,6 +3,7 @@ package com.group2.website.controller;
 import com.group2.website.entity.User;
 import com.group2.website.objects.UserDTO;
 import com.group2.website.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,8 +28,9 @@ public class AccountController {
 
     private final UserService userService;
 
+
     @Autowired
-    public AccountController(UserService userService) {
+    public AccountController(UserService userService, HttpSession httpSession) {
         this.userService = userService;
     }
 
